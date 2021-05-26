@@ -25,6 +25,15 @@ def create_movie(title, overview, release_date, poster_path):
 
     return movie
 
+def show_all_movies():
+    """returns a list of ALL the movies. ever. (in your db)"""
+
+    Movie.query.finish_this_stuff_cool
+
+    #WE LEFT OFF: Your Task (task 1 ): ) in part 3. 
+    # is this whole thing even completeable in 4 sessions?
+
+
 def create_rating(score, user, movie):
     """Create and return a new rating.
     user and movie should be objects."""

@@ -28,7 +28,7 @@ for movie in movie_data:
     title = movie["title"]
     overview = movie["overview"]
     poster_path = movie["poster_path"]
-    
+
     date_str = movie["release_date"]
     date_format = "%Y-%m-%d"
     release_date = datetime.strptime(date_str, date_format)
@@ -40,5 +40,15 @@ for movie in movie_data:
 
     # TODO: create a movie here and append it to movies_in_db
 
-    # WHERE WE LEFT OFF. We did not run python3 seed_database.py to verify that it's working
-    # this is BEFORE "Seed the Database!" in the instructions
+for n in range(10):
+    email = f'user{n}@test.com'  # Voila! A unique email!
+    password = 'test'
+
+    user = crud.create_user(email, password)
+
+    for n in range(10):
+
+        rando_num = randint(1, 5)
+        rando_mov = choice(movies_in_db)
+
+        crud.create_rating(rando_num, user, rando_mov)
