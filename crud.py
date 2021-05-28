@@ -15,6 +15,21 @@ def create_user(email, password):
 
     return user
 
+def show_all_users():
+    """ Return a list of all user objects"""
+
+    return User.query.all()
+
+def show_user_by_id(user_id):
+    """Returns a single user by id"""
+
+    return User.query.get(user_id)
+
+def get_user_by_email(email):
+    """Returns user based on email"""
+
+    return User.query.filter(User.email == email).first()
+
 def create_movie(title, overview, release_date, poster_path):
     """Create and return a new movie."""
 
@@ -28,11 +43,12 @@ def create_movie(title, overview, release_date, poster_path):
 def show_all_movies():
     """returns a list of ALL the movies. ever. (in your db)"""
 
-    Movie.query.finish_this_stuff_cool
+    return Movie.query.all()
 
-    #WE LEFT OFF: Your Task (task 1 ): ) in part 3. 
-    # is this whole thing even completeable in 4 sessions?
+def get_movie_by_id(movie_id):
+    """Shows information for 1 movie by the primary key/id"""
 
+    return Movie.query.get(movie_id)
 
 def create_rating(score, user, movie):
     """Create and return a new rating.
