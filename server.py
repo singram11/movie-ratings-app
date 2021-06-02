@@ -29,10 +29,9 @@ def create_login():
     if user != None:
         flash('This user already exists')   
     else:
+        crud.create_user(user_email, user_password)
         flash('Account created!')
 
-    # WE LEFT OFF HERE: num3 in part 4 of the lab - haven't made a way for this thing
-    # to create a user in the else part of the above thing. 
     return redirect('/')
 
 @app.route("/movies")
@@ -65,7 +64,25 @@ def show_all_users():
 
     return render_template('all_users.html', users=users)
 
+@app.route("/login", methods = ['POST'])
+def login_page():
+    """Log user in and add user info to session"""
 
+    user_email = request.form['user_email']
+    user_password = request.form['password']
+
+    user = crud.get_user_by_email(user_email)
+
+    if user == None:
+        flash('That login doesn\'t exist. Sorry bro.')
+    else:
+        if user.password == user_password:
+            session['user_email'] = user_email
+            flash('Ya logged in. Ya done good.')
+        else:
+            flash("Ya didn't log in. Ya done goofed.")
+
+    return redirect('/')
 
 
 if __name__ == '__main__':
